@@ -33,12 +33,14 @@ function playGame (){
     let winner = decideWinner()
     if (winner === "user") {
         console.log("You won! Congrats!")
+        userTotal += 1
     }
     else if (winner ==="computer"){
         console.log("You lost! Hard luck.")
+        computerTotal += 1
     }
     else {console.log("It's a draw! Boring!")}
-    // console.log(`The score is You: ${userTotal} Computer: ${computerTotal}`)
+    console.log(`The score is You: ${userTotal} Computer: ${computerTotal}`)
     console.log("To play again type 'playGame()' in the console")
 
 
