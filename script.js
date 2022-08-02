@@ -1,53 +1,100 @@
 // tell the user we are playing Rock paper scissors
-console.log(alert("Hi! Let's play rock, paper scissors. To play just type your selection in the next window"))
+// console.log(alert("Hi! Let's play rock, paper scissors. To play just type your selection in the next window"))
 // variables for keeping score
 let userTotal = 0
 let computerTotal = 0
 // overall game function
-function playGame (){
-    // gets user choice
-    let getUser = function (getUser){
-        return prompt("rock, paper, scissors")
-    }
-    let userChoice = getUser()
-    // gets computer choice
-    let getComputer = function (getComputer){
-        let options = ["rock", "paper", "scissors"]
-        return options[Math.floor(Math.random() * options.length)];
-    }
-    let computerChoice = getComputer()
-    console.log(`You chose ${userChoice}, I choose ${computerChoice}`)
-    // evaluates who won
-    let decideWinner = function (win){
-        let userScore = userChoice.length;
-        let computerScore = computerChoice.length;
-        let winScore = userScore - computerScore;
-        if (winScore === 1 || winScore === 3 || winScore === -4) {
-            return "user"
-        }
-        else if (winScore === -1 || winScore === -3 || winScore === 4) {
-            return "computer"
-        }
-        else {
-            return "draw"
-    }
-    }
 
-    let winner = decideWinner()
-    // tells user who won and updates the aggregate score
+const container = document.querySelector('.container')
+const updateUserScore = document.querySelector('#userscore')
+updateUserScore.textContent = `${userTotal}`
+
+const updateComputerScore = document.querySelector('#computerscore')
+updateComputerScore.textContent = `${computerTotal}`
+
+function winCommunication (){
+    const userWin = document.createElement('div');
+    userWin.classList.add('win');
+    userWin.textContent = "You Win!"
+    container.appendChild(userWin);
+    userTotal += 1
+};
+function loseCommunication (){
+    const compWin = document.createElement('div');
+    compWin.classList.add('lose');
+    compWin.textContent = "You Lose!"
+    container.appendChild(compWin);
+    computerTotal += 1
+};
+function drawCommunication (){
+    const draw = document.createElement('div');
+    draw.classList.add('draw');
+    draw.textContent = "It's a draw... Boring!"
+    container.appendChild(draw);
+};
+
+const rock = document.querySelector('#rock');
+rock.addEventListener('click', () => {
+    userChoice = "rock"
+    computerChoice = getComputer()
+    winner = decideWinner()
     if (winner === "user") {
-        console.log("You won! Congrats!")
-        userTotal += 1
+        winCommunication()
     }
-    else if (winner ==="computer"){
-        console.log("You lost! Hard luck.")
-        computerTotal += 1
+    else if (winner === "computer"){
+        loseCommunication()
     }
-    else {console.log("It's a draw! Boring!")}
-    console.log(`The score is You: ${userTotal} Computer: ${computerTotal}`)
-    // tells user how to play again
-    console.log("To play again type 'playGame()' in the console")
+    else {drawCommunication()}
+})
 
+const paper = document.querySelector('#paper');
+paper.addEventListener('click', () => {
+    userChoice = "paper"
+    computerChoice = getComputer()
+    winner = decideWinner()
+    if (winner === "user") {
+        winCommunication()
+    }
+    else if (winner === "computer"){
+        loseCommunication()
+    }
+    else {drawCommunication()}
+})
+
+const scissors = document.querySelector('#scissors');
+scissors.addEventListener('click', () => {
+    userChoice = "scissors"
+    computerChoice = getComputer()
+    winner = decideWinner()
+    if (winner === "user") {
+        winCommunication()
+    }
+    else if (winner === "computer"){
+        loseCommunication()
+    }
+    else {drawCommunication()}
+})
+
+function getUser (){
 
 }
-playGame()
+function getComputer (){
+    let options = ["rock", "paper", "scissors"]
+    return options[Math.floor(Math.random() * options.length)];
+
+}
+
+function decideWinner (){
+    let userScore = userChoice.length;
+    let computerScore = computerChoice.length;
+    let winScore = userScore - computerScore;
+    if (winScore === 1 || winScore === 3 || winScore === -4) {
+        return "user"
+    }
+    else if (winScore === -1 || winScore === -3 || winScore === 4) {
+        return "computer"
+    }
+    else {
+        return "draw"
+}
+}
