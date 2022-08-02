@@ -2,8 +2,32 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+    <div class="container">
+        <div class="header">
+            <h1>Rock, Paper, Scissors!</h1>
+        </div>
+        <div class="buttons">
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissors">Scissors</button>
+        </div>
+        <div class="score">
+            <h2>Score:</h2>
+            <div class="scoreinput">
+                <div class="userscore">
+                    <span class="user">You</span>
+                    <span id="userscore">x</span>
+                </div>
+                <div class="computerscore">
+                    <span class="computer">Computer</span>
+                    <span id="computerscore"></span>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="./script.js">
     </script>
 </body>
